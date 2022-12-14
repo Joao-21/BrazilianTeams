@@ -1,0 +1,29 @@
+body {
+    background-color: #cad2c5;
+    color: black;
+    font-family: Sans-serif;
+}
+
+
+.about-content {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 2rem 1.5rem;
+}
+
+.content {
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+.tab-btn {
+    background-color: #84a98c;
+    color: white;
+}
+
+.tab-btn.active {
+    background-color: #52796f;
+}
