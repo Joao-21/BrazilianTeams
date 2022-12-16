@@ -2,13 +2,65 @@ body {
     background-color: #cad2c5;
     color: black;
     font-family: Sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    right: 2%;
 }
 
+h2 {
+    word-wrap: break-word;
+}
 
-.about-content {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding: 2rem 1.5rem;
+@media (max-width: 979px) {
+    .about-center {
+        display: grid !important;
+        column-gap: normal !important;
+        grid-template-columns: 100% !important;
+    }
+
+    h2 {
+        padding: 0px 4px
+    }
+}
+
+.main-container {
+    width: 100%;
+}
+
+.about-center {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    column-gap: 2%;
+}
+
+.team-content {
+    background-color: white;
+    box-shadow: 4px 4px 2px #2f3e46;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin-bottom: 32px;
+}
+
+.img-container {
+    margin-bottom: 8px;
+}
+
+.img-team {
+    width: 200px;
+    height: 180px;
+    object-fit: fill;
+    border-radius: 4px;
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
 .content {
@@ -22,6 +74,9 @@ body {
 .tab-btn {
     background-color: #84a98c;
     color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0px;
 }
 
 .tab-btn.active {

@@ -3,19 +3,31 @@ const about = document.querySelector(".about-center");
 const teams = [
   {
     name: "palmeiras",
-    history: "Muito bom",
-    vision: "Bacana",
-    goals: "Ser bom",
-    img: "./assets/palmeiras.jpg",
-    label: "Palmeiras",
+    informations: "Muito bom",
+    titles: "Bacana",
+    history: "Ser bom",
+    label: "Sociedade Esportiva Palmeiras",
   },
   {
     name: "corinthians",
-    history: "Muito ruim",
-    vision: "lixo",
-    goals: "Ser ruim",
-    img: "./assets/corinthians.jpg",
-    label: "Corinthians",
+    informations: "informations",
+    titles: "titles",
+    history: "history",
+    label: "Sport Club Corinthians Paulista",
+  },
+  {
+    name: "saopaulo",
+    informations: "saopaulo",
+    titles: "saopaulo",
+    history: "saopaulo",
+    label: "São Paulo Futebol Clube",
+  },
+  {
+    name: "santos",
+    informations: "santos",
+    titles: "santos",
+    history: "santos",
+    label: "Santos Futebol Clube",
   },
 ];
 
@@ -23,29 +35,26 @@ const sectionCenter = document.querySelector(".about-center");
 
 window.addEventListener("DOMContentLoaded", function () {
   let displayTeams = teams.map((team) => {
-    return `<div id=${team.name} class="team-content">
-              <article class="about-img">
-                <img src=${team.img} alt="about picture" />
-                <h2>${team.label}</h>
-              </article>
+    return `<div class="team-content">
+              <div class="img-container">
+                <div><h2>${team.label}</h2></div>
+                <img src="./assets/${team.name}.jpg" alt="about picture" class="img-team"/>
+              </div>
               <article class="about">
                   <div class="btn-container">
-                      <button class="tab-btn active" data-id="history-${team.name}" id="history-${team.name}">History</button>
-                      <button class="tab-btn" data-id="vision-${team.name}" id="vision-${team.name}">Vision</button>
-                      <button class="tab-btn" data-id="goals-${team.name}" id="goals-${team.name}">Goals</button>
+                      <button class="tab-btn active" data-id="informations-${team.name}" id="informations-${team.name}">Informations</button>
+                      <button class="tab-btn" data-id="titles-${team.name}" id="titles-${team.name}">Titles</button>
+                      <button class="tab-btn" data-id="history-${team.name}" id="history-${team.name}">History</button>
                   </div>
                   <article class="about-content" id="content-${team.name}">
-                      <div class="content active" id="content-history-${team.name}">
-                          <h4>History</h4>
+                      <div class="content active" id="content-informations-${team.name}">
+                          <p>${team.informations}</p>
+                      </div>
+                      <div class="content" id="content-titles-${team.name}">
+                          <p>${team.titles}</p>
+                      </div>
+                      <div class="content" id="content-history-${team.name}">
                           <p>${team.history}</p>
-                      </div>
-                      <div class="content" id="content-vision-${team.name}">
-                          <h4>Vision</h4>
-                          <p>${team.vision}</p>
-                      </div>
-                      <div class="content" id="content-goals-${team.name}">
-                          <h4>Goals</h4>
-                          <p>${team.goals}</p>
                       </div>
                   </article>
               </article>
@@ -64,28 +73,30 @@ about.addEventListener("click", function (e) {
     const buttonName = buttonAndTeam[0];
     const team = buttonAndTeam[1];
 
+    const buttonInformations = document.getElementById(`informations-${team}`);
+    const buttonTitles = document.getElementById(`titles-${team}`);
     const buttonHistory = document.getElementById(`history-${team}`);
-    const buttonVision = document.getElementById(`vision-${team}`);
-    const buttonGoals = document.getElementById(`goals-${team}`);
 
+    buttonInformations.classList.remove("active");
+    buttonTitles.classList.remove("active");
     buttonHistory.classList.remove("active");
-    buttonVision.classList.remove("active");
-    buttonGoals.classList.remove("active");
     e.target.classList.add("active");
 
     const article = document.getElementById(`content-${team}`);
 
     if (article) {
+      const contentInformations = document.getElementById(
+        `content-informations-${team}`
+      );
+      const contentTitles = document.getElementById(`content-titles-${team}`);
       const contentHistory = document.getElementById(`content-history-${team}`);
-      const contentVision = document.getElementById(`content-vision-${team}`);
-      const contentGoals = document.getElementById(`content-goals-${team}`);
       const clickedElement = document.getElementById(
         `content-${buttonName}-${team}`
       );
 
+      contentInformations.classList.remove("active");
+      contentTitles.classList.remove("active");
       contentHistory.classList.remove("active");
-      contentVision.classList.remove("active");
-      contentGoals.classList.remove("active");
 
       clickedElement.classList.add("active");
     }
