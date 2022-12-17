@@ -1,66 +1,52 @@
 const about = document.querySelector(".about-center");
+const loading = document.getElementById("loader");
 
-const teams = [
-  {
-    name: "palmeiras",
-    informations: "Muito bom",
-    titles: "Bacana",
-    history: "Ser bom",
-    label: "Sociedade Esportiva Palmeiras",
-  },
-  {
-    name: "corinthians",
-    informations: "informations",
-    titles: "titles",
-    history: "history",
-    label: "Sport Club Corinthians Paulista",
-  },
-  {
-    name: "saopaulo",
-    informations: "saopaulo",
-    titles: "saopaulo",
-    history: "saopaulo",
-    label: "São Paulo Futebol Clube",
-  },
-  {
-    name: "santos",
-    informations: "santos",
-    titles: "santos",
-    history: "santos",
-    label: "Santos Futebol Clube",
-  },
-];
+let teams = [];
+
+async function fetchTeamsApi() {
+  await fetch("https://my-json-server.typicode.com/Joao-21/backendTeams/db")
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      teams = response.teams;
+    })
+    .catch((err) => console.log(err));
+}
 
 const sectionCenter = document.querySelector(".about-center");
 
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", async function () {
+  loader.style.display = "block";
+  await fetchTeamsApi();
+  loader.style.display = "none";
+
   let displayTeams = teams.map((team) => {
     return `<div class="team-content">
-              <div class="img-container">
-                <div><h2>${team.label}</h2></div>
-                <img src="./assets/${team.name}.jpg" alt="about picture" class="img-team"/>
-              </div>
-              <article class="about">
-                  <div class="btn-container">
-                      <button class="tab-btn active" data-id="informations-${team.name}" id="informations-${team.name}">Informations</button>
-                      <button class="tab-btn" data-id="titles-${team.name}" id="titles-${team.name}">Titles</button>
-                      <button class="tab-btn" data-id="history-${team.name}" id="history-${team.name}">History</button>
-                  </div>
-                  <article class="about-content" id="content-${team.name}">
-                      <div class="content active" id="content-informations-${team.name}">
-                          <p>${team.informations}</p>
-                      </div>
-                      <div class="content" id="content-titles-${team.name}">
-                          <p>${team.titles}</p>
-                      </div>
-                      <div class="content" id="content-history-${team.name}">
-                          <p>${team.history}</p>
-                      </div>
-                  </article>
-              </article>
-            </div>`;
+                <div class="img-container">
+                  <div><h2>${team.label}</h2></div>
+                  <img src="./assets/${team.name}.jpg" alt="about picture" class="img-team"/>
+                </div>
+                <article class="about">
+                    <div class="btn-container">
+                        <button class="tab-btn active" data-id="informations-${team.name}" id="informations-${team.name}">Informations</button>
+                        <button class="tab-btn" data-id="titles-${team.name}" id="titles-${team.name}">Titles</button>
+                        <button class="tab-btn" data-id="history-${team.name}" id="history-${team.name}">History</button>
+                    </div>
+                    <article class="about-content" id="content-${team.name}">
+                        <div class="content active" id="content-informations-${team.name}">
+                            <p>${team.informations}</p>
+                        </div>
+                        <div class="content" id="content-titles-${team.name}">
+                            <p>${team.titles}</p>
+                        </div>
+                        <div class="content" id="content-history-${team.name}">
+                            <p>${team.history}</p>
+                        </div>
+                    </article>
+                </article>
+              </div>`;
   });
-
   displayTeams = displayTeams.join("");
   sectionCenter.innerHTML = displayTeams;
 });
