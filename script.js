@@ -17,7 +17,7 @@ async function fetchTeamsApi() {
 const sectionCenter = document.querySelector(".about-center");
 
 window.addEventListener("DOMContentLoaded", async function () {
-  loader.style.display = "block";
+  loader.style.display = "flex";
   await fetchTeamsApi();
   loader.style.display = "none";
 
@@ -47,6 +47,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 </article>
               </div>`;
   });
+
   displayTeams = displayTeams.join("");
   sectionCenter.innerHTML = displayTeams;
 });
