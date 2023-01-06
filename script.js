@@ -25,20 +25,37 @@ window.addEventListener("DOMContentLoaded", async function () {
     return `<div class="team-content">
                 <div class="img-container">
                   <div><h2>${team.label}</h2></div>
-                  <img src="./assets/${team.name}.jpg" alt="about picture" class="img-team"/>
+                  <img src="./assets/${
+                    team.name
+                  }.jpg" alt="about picture" class="img-team"/>
                 </div>
                 <article class="about">
                     <div class="btn-container">
-                        <button class="tab-btn active" data-id="informations-${team.name}" id="informations-${team.name}">Informations</button>
-                        <button class="tab-btn" data-id="titles-${team.name}" id="titles-${team.name}">Titles</button>
-                        <button class="tab-btn" data-id="history-${team.name}" id="history-${team.name}">History</button>
+                        <button class="tab-btn active" data-id="informations-${
+                          team.name
+                        }" id="informations-${team.name}">Informations</button>
+                        <button class="tab-btn" data-id="titles-${
+                          team.name
+                        }" id="titles-${team.name}">Titles</button>
+                        <button class="tab-btn" data-id="history-${
+                          team.name
+                        }" id="history-${team.name}">History</button>
                     </div>
                     <article class="about-content" id="content-${team.name}">
-                        <div class="content active" id="content-informations-${team.name}">
+                        <div class="content active" id="content-informations-${
+                          team.name
+                        }">
                             <p>${team.informations}</p>
                         </div>
                         <div class="content" id="content-titles-${team.name}">
-                            <p>${team.titles}</p>
+                            <ul>
+                              <li>Libertadores: ${
+                                team.titles.libertadores || 0
+                              }</li>     
+                              <li>Brasileiro: ${
+                                team.titles.brasileiro || 0
+                              }</li>          
+                            </ul>
                         </div>
                         <div class="content" id="content-history-${team.name}">
                             <p>${team.history}</p>
